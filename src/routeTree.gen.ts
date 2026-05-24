@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SpecialsRouteImport } from './routes/specials'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductSlugRouteImport } from './routes/product.$slug'
@@ -18,6 +19,11 @@ import { Route as CategorySlugRouteImport } from './routes/category.$slug'
 const SpecialsRoute = SpecialsRouteImport.update({
   id: '/specials',
   path: '/specials',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogRoute = BlogRouteImport.update({
@@ -44,6 +50,7 @@ const CategorySlugRoute = CategorySlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/blog': typeof BlogRoute
+  '/contact': typeof ContactRoute
   '/specials': typeof SpecialsRoute
   '/category/$slug': typeof CategorySlugRoute
   '/product/$slug': typeof ProductSlugRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/blog': typeof BlogRoute
+  '/contact': typeof ContactRoute
   '/specials': typeof SpecialsRoute
   '/category/$slug': typeof CategorySlugRoute
   '/product/$slug': typeof ProductSlugRoute
@@ -59,19 +67,33 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/blog': typeof BlogRoute
+  '/contact': typeof ContactRoute
   '/specials': typeof SpecialsRoute
   '/category/$slug': typeof CategorySlugRoute
   '/product/$slug': typeof ProductSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/blog' | '/specials' | '/category/$slug' | '/product/$slug'
+  fullPaths:
+    | '/'
+    | '/blog'
+    | '/contact'
+    | '/specials'
+    | '/category/$slug'
+    | '/product/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/blog' | '/specials' | '/category/$slug' | '/product/$slug'
+  to:
+    | '/'
+    | '/blog'
+    | '/contact'
+    | '/specials'
+    | '/category/$slug'
+    | '/product/$slug'
   id:
     | '__root__'
     | '/'
     | '/blog'
+    | '/contact'
     | '/specials'
     | '/category/$slug'
     | '/product/$slug'
@@ -80,6 +102,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BlogRoute: typeof BlogRoute
+  ContactRoute: typeof ContactRoute
   SpecialsRoute: typeof SpecialsRoute
   CategorySlugRoute: typeof CategorySlugRoute
   ProductSlugRoute: typeof ProductSlugRoute
@@ -92,6 +115,13 @@ declare module '@tanstack/react-router' {
       path: '/specials'
       fullPath: '/specials'
       preLoaderRoute: typeof SpecialsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog': {
@@ -128,6 +158,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BlogRoute: BlogRoute,
+  ContactRoute: ContactRoute,
   SpecialsRoute: SpecialsRoute,
   CategorySlugRoute: CategorySlugRoute,
   ProductSlugRoute: ProductSlugRoute,
