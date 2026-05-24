@@ -236,4 +236,3 @@ function PromoBlock({
     </div>
   );
 }
-}
