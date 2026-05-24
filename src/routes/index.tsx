@@ -49,7 +49,7 @@ function Index() {
                 Cinema-grade visuals, lifelike sound, and effortless smart features. Save up to 30% this season.
               </p>
               <Link
-                to="/category/all"
+                to="/category/$slug" params={{ slug: "all" }}
                 className="mt-6 inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
               >
                 Shop Now <ChevronRight size={16} />
@@ -84,7 +84,7 @@ function Index() {
             <div>
               <p className="text-[10px] font-semibold tracking-widest text-accent-foreground">{b.eyebrow}</p>
               <h3 className="mt-1 text-lg font-semibold">{b.title}</h3>
-              <Link to="/category/all" className="mt-3 inline-block rounded-md bg-primary px-4 py-1.5 text-xs font-semibold text-primary-foreground">Shop Now</Link>
+              <Link to="/category/$slug" params={{ slug: "all" }} className="mt-3 inline-block rounded-md bg-primary px-4 py-1.5 text-xs font-semibold text-primary-foreground">Shop Now</Link>
             </div>
           </div>
         ))}
@@ -231,7 +231,7 @@ function PromoBlock({
         <p className="text-[10px] font-semibold tracking-widest text-accent-foreground">{eyebrow}</p>
         <h3 className="mt-1 text-2xl font-semibold leading-tight">{title}</h3>
         <p className="mt-2 text-sm text-muted-foreground">Premium picks, hand-curated for modern living.</p>
-        <Link to="/category/all" className="mt-4 inline-block rounded-md bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground">Shop Now</Link>
+        <Link to="/category/$slug" params={{ slug: "all" }} className="mt-4 inline-block rounded-md bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground">Shop Now</Link>
       </div>
     </div>
   );
